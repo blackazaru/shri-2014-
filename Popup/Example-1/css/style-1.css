@@ -39,8 +39,7 @@
     color: #151515;
     border: 7px solid #b6b6b6;
     z-index: 1000;
-    font-size: 24px;
-    font-family: monospace;
+    font-size: 16px;
 }
 
 .content-popup {
