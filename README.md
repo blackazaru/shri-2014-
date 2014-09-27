@@ -1,4 +1,4 @@
-shri-2014-
+shri-2014
 ==========
 
 Yandex(shri)
