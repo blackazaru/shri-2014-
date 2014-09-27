@@ -59,7 +59,7 @@
 
 
                         // Кол-во столбиков
-                        var colQuantity = Math.ceil($(selector).width() / (colWidth));
+                        var colQuantity = Math.ceil($(selector).width() / colWidth);
                         var cols = Array(colQuantity);
                         for (var i = 0; i < cols.length; i++) {
                             var span = $('<span/>').appendTo(selector);
@@ -74,34 +74,36 @@
                                 background: 'pink',
                                 borderTop: '2px solid red'
                             });
-                            up_equalizer(span, selector, timeout, colHeight);
+                            run_equalizer(span, selector, timeout, colHeight);
                         }
 
 
                     }
 
-                    function up_equalizer(span, selector, timeout, Height) {
+                    function run_equalizer(span, selector, timeout, Height) {
                         var colHeight = Math.round(Height * Math.random());
-                        span.animate(
-                                {height: colHeight},
-                                timeout,
-                                'linear',
-                                function () {
-                                    down_equalizer(span, selector, timeout, Height);
+                        span.css(
+                                {
+                                    height : Height /2
                                 }
                         );
+                        setTimeout(function() {
+                            span.css(
+                                {
+                                    transition: 'height '+timeout/1000+'s linear',
+                                    height : colHeight
+                                }
+                            );
+                            setTimeout(function() {
+                                run_equalizer(span, selector, timeout, Height);
+                            }, timeout);
+                        }, timeout);
                     }
 
-                    function down_equalizer(span, selector, timeout, Height) {
-                        span.animate(
-                                {height: Height / 2},
-                                timeout,
-                                'linear',
-                                function () {
-                                    up_equalizer(span, selector, timeout, Height);
-                                }
-                        );
-                    }
+
+
+
+
                     setEqualizer(that, options.timeout, options.width);
 
                 };
